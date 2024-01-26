@@ -9,20 +9,20 @@ temps_debut = time.time()
 
 Histoires = 10000
 
-N = 1000
-T = 40
-a = 0.2
-dt = T/N
-p = a * dt
-number_clicks_histories = []
+N = 1000			#number of iterations	
+T = 40				#Ending time
+a = 0.2				#rate 
+dt = T/N			#time step
+p = a * dt			#probability
+number_clicks_histories = [] 	#table to stock the clicks	
 
 
 for j in range (Histoires):
     number_clicks_dt = np.zeros(N)
     for i in range (N):  
-        if np.random.uniform(0,1) < p:
+        if np.random.uniform(0,1) < p:		#We add +1 click given our probability
             number_clicks_dt[i]+= 1 
-    number_clicks_histories.append(sum(number_clicks_dt))
+    number_clicks_histories.append(sum(number_clicks_dt))	#we count all the clicks 
 
 # print (np.mean(number_clicks_histories))
 
@@ -34,13 +34,13 @@ entries,bin_edges,patches = plt.hist(number_clicks_histories, bins=bins, density
 # calculate bin centers
 bin_centers = 0.5 * (bin_edges[1:] + bin_edges[:-1])
 
-
+#we can also use a fit function
 def fit_function(k, lamb):
     '''poisson function, parameter lamb is the fit parameter'''
     return poisson.pmf(k, lamb)
 
 
-# fit with curve_fit
+# fit with curve_fit 
 parameters, cov_matrix = curve_fit(fit_function, bin_centers, entries)
 print(np.sqrt(cov_matrix))
 # plot poisson-deviation with fitted parameter

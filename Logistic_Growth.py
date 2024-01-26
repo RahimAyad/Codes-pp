@@ -2,18 +2,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
 
-y0 = [1] #starting with 1 
+y0 = [1] 	#starting with 1 individual
 
-tend = 500
-N = 1000
+tend = 500	#ending time	
+N = 1000	#number of iterations
 
 t = np.linspace(0,tend,N)
 
-r = 0.05
-K = 1000 #carrying capacity
+r = 0.05	#rate of birth
+K = 1000 	#carrying capacity
 
 params = [r,K]
-
+#solve the ODE
 def sim(Initial,t,params):
     
     x = Initial[0]  
